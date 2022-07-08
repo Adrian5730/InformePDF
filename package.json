@@ -1,7 +1,6 @@
 {
   "name": "pdf",
   "version": "1.0.0",
-  "description": "",
   "main": "servidor.js",
   "dependencies": {
     "ejs": "^3.1.8",
@@ -22,5 +21,15 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adrian5730/InformePDF.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Adrian5730/InformePDF/issues"
+  },
+  "homepage": "https://github.com/Adrian5730/InformePDF#readme",
+  "description": ""
 }
