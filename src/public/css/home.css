@@ -1,0 +1,52 @@
+header.header-principal {
+    background: #224C71;
+    text-align: center;
+}
+
+header.header-principal img.logo-panel {
+    width: 14%;
+    margin: auto;
+}
+
+.btn-panel-cln {
+    display: block;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 16%), 0 0 0 1px rgb(0 0 0 / 8%);
+    transition: all .3s cubic-bezier(.25, .8, .25, 1);
+    background-color: #fff;
+    padding: 15px;
+    height: 90px;
+    text-decoration: none;
+}
+
+table.dataTable {
+    clear: both;
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+    max-width: none !important;
+    border-collapse: separate !important;
+    border-spacing: 0;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle
+}
+
+h1 {
+    text-align: center;
+}
+
+.btn-panel-cln i {
+    font-size: 30px;
+    color: #224C71;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.btn-panel-cln span {
+    color: #555;
+    font-size: 18px;
+}
+
+.btn-pdf {
+    font-size: 30px;
+    color: red
+}

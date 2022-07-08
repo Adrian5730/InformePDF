@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="header-principal">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="">
+                        <img class="logo-panel"
+                            src="https://www.bidcom.com.ar/images/vector/logo-bidcom-panel.svg?v=1.2" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <h1>Creacion de pdf</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" offset-md-1 col-md-10 offset-md-1">
+                <table class="table table-striped table-bordered table-hover text-nowrap table-sm dataTable no-footer">
+                    <thead>
+                        <tr role="row">
+                            <th>Id</th>
+                            <th>So</th>
+                            <th>Alias</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Unidades Carton</th>
+                            <th>Origen</th>
+                            <th>Cantidad Bultos</th>
+                            <th>C/NO Inicial</th>
+                            <th>Codigo</th>
+                            <th>Units</th>
+                            <th>PDF</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% db.forEach(function(data, i) { %>
+                            <tr role="row">
+                                <td>
+                                    <%= data.rowIndex %>
+                                </td>
+                                <td>
+                                    <%= data.Id %>
+                                </td>
+                                <td>
+                                    <%= data.Alias %>
+                                </td>
+                                <td>
+                                    <%= data.Marca %>
+                                </td>
+                                <td>
+                                    <%= data.Modelo %>
+                                </td>
+                                <td>
+                                    <%= data.UnidadesCarton %>
+                                </td>
+                                <td>
+                                    <%= data.Origen %>
+                                </td>
+                                <td>
+                                    <%= data.CantidadBultos %>
+                                </td>
+                                <td>
+                                    <%= data.CNOInicial %>
+                                </td>
+                                <td>
+                                    <%= data.Codigo %>
+                                </td>
+                                <td>
+                                    <%= data.Units %>
+                                </td>
+                                <td><a href="/pdf/creacion/<%= data.rowNumber %>"><i class='btn-pdf fas fa-file-download'></i></a></td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <script src="/js/pdf.js"></script>
+</body>
+
+</html>

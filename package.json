@@ -1,0 +1,26 @@
+{
+  "name": "pdf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "servidor.js",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "google-spreadsheet": "^3.3.0",
+    "googleapis": "^100.0.0",
+    "html-pdf": "^3.0.1",
+    "html-pdf-node": "^1.0.8",
+    "jsbarcode": "^3.11.5",
+    "jssoup": "^0.0.15",
+    "method-override": "^3.0.0",
+    "nodemon": "^2.0.16",
+    "supports-color": "^7.2.0",
+    "xmldom": "^0.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

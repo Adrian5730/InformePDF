@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/plantilla-pdf.ejs">
+    <%- include('plantilla-css.ejs') %>
+</head>
+
+<body>
+    <h2 class="titulo"></h2>
+    <div class="container bordado">
+        <div class="container titulo bordado instrucciones">
+            <p><strong>Labelling instructions per product -
+                    <%= nombreArchivo %>
+                </strong></p>
+            <p>***All barcode labels must be black with a white background***</p>
+        </div>
+        <h3 class="titulo">Shipping mark (Carton)</h3>
+        <div class="container informacion">
+            <div class="container infProducto">
+                <span>Minimum recommended size 210x150mm</span>
+                <div class="bordado">
+                    <p>PI -
+                        <%= db.NumInvoice %>
+                    </p>
+                    <p>MARCA: -
+                        <%= db.Marca %>
+                    </p>
+                    <p>MODELO:
+                        <%= db.Modelo %>
+                    </p>
+                    <p>Cont:
+                        <%= db.Cont %>
+                    </p>
+                    <p>Origen:
+                        <%= db.Origen %>
+                    </p>
+                    <p>C/NO:
+                        <%= db.CNOInicial %>
+                    </p>
+
+                    <% for(let i = 0; i < voidsEnCodigoSvg.length; i++) {%>
+                        <%- voidsEnCodigoSvg[i] %>
+                    <% }; %>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
