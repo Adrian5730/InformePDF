@@ -87,10 +87,13 @@ let pdfController = {
 
         const voidElement = {voidsCaja, voidsIndividuales, voidsEan}
         const html = await pdfContainer.renderizacionPlantilla(data, voidElement, nombreArchivo)
-        // console.log(html)
-
-        pdfContainer.crearPDF(html, nombreArchivo)
-        res.render('plantilla-pdf-unico', { db: data, voidsEnCodigoSvg: voidElement, nombreArchivo: nombreArchivo })
+        const urlArchivo = pdfContainer.crearPDF(html, nombreArchivo)
+        res.setHeader("Content-Type", "text/plain")
+        res.download(`./public/pdf/${nombreArchivo}.pdf`, (err) => {
+            if (err) return console.log(err);
+            res.redirect('/pdf')
+        })
+        // res.render('plantilla-pdf-unico', { db: data, voidsEnCodigoSvg: voidElement, nombreArchivo: nombreArchivo })
     }
 
 }

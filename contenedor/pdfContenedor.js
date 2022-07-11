@@ -39,6 +39,7 @@ const pdfContainer = {
         let options = { format: 'Letter', type: 'pdf'};
         pdf.create(documento, options).toFile(`./public/pdf/${nombreArchivo}.pdf`, (err, res) => {
             if (err) return console.log(err);
+            return res
             //console.log(res); // Devuelve la ruta de los archivos con su nombre
         });
     }
