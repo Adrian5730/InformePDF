@@ -81,14 +81,16 @@ let pdfController = {
         const id = db.findIndex((data) =>  data.rowNumber == req.params.id)
         const data = db[id]
         let nombreArchivo = data.Codigo + data.Id
-        const voidsCaja = pdfContainer.crearCodigoBarras(data.SOCartonInicial)
-        const voidsIndividuales = pdfContainer.crearCodigoBarras(data.VoidDesde)
-        const voidElement = {voidsCaja, voidsIndividuales}
+        const voidsCaja = pdfContainer.crearCodigoBarras(data.SOCartonInicial, 1, "CODE128")
+        const voidsIndividuales = pdfContainer.crearCodigoBarras(data.VoidDesde, 1.8, "CODE128")
+        const voidsEan = pdfContainer.crearCodigoBarras(data.Ean, 1.6, "EAN13")
+
+        const voidElement = {voidsCaja, voidsIndividuales, voidsEan}
         const html = await pdfContainer.renderizacionPlantilla(data, voidElement, nombreArchivo)
         // console.log(html)
 
         pdfContainer.crearPDF(html, nombreArchivo)
-        res.render('plantilla-pdf-unico', { db: data, voidsEnCodigoSvg: {voidsCaja, voidsIndividuales}, nombreArchivo: nombreArchivo })
+        res.render('plantilla-pdf-unico', { db: data, voidsEnCodigoSvg: voidElement, nombreArchivo: nombreArchivo })
     }
 
 }

@@ -8,14 +8,14 @@ const pdf = require("html-pdf");
 
 const pdfContainer = {
 
-    crearCodigoBarras(textoAConvertir) {
+    crearCodigoBarras(textoAConvertir, ancho, formato) {
         const xmlSerializer = new XMLSerializer();
         const document = new DOMImplementation().createDocument('http://www.w3.org/1999/xhtml', 'html', null);
         const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         JsBarcode(svgNode, textoAConvertir, {
             xmlDocument: document,
-            format: "CODE128",
-            width: 1,
+            format: formato,
+            width: ancho,
             height: 70,
             margin: 2
         });
