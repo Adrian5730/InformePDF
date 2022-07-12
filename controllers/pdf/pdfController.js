@@ -96,8 +96,8 @@ let pdfController = {
         const voidElement = { voidsCaja, voidsIndividuales, voidsEan }
         const html = await pdfContainer.renderizacionPlantilla(data, voidElement, nombreArchivo)
         pdfContainer.crearPDF(html, nombreArchivo)
-
-
+        let nombreCarpeta = data.Id
+        crearYSubirArchivo(nombreArchivo, nombreCarpeta)
         res.setHeader("Content-Type", "application/pdf")
         res.download(`./public/pdf/${nombreArchivo}.pdf`, (err) => {
             if(err){
