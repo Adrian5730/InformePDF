@@ -50,3 +50,15 @@ h1 {
     font-size: 30px;
     color: red
 }
+
+label{
+    display: flex;
+}
+
+input.inputInvoice{
+    margin: 0 5px;
+}
+
+form{
+    display: flex;
+}

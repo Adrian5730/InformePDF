@@ -2,15 +2,23 @@ const JsBarcode = require('jsbarcode');
 const { DOMImplementation, XMLSerializer } = require('xmldom');
 const pdf = require("html-pdf");
 const ejs = require('ejs');
-const googleSheet = require('../../db/db');
+const accederGoogleSheet = require('../../db/db');
 const crearYSubirArchivo = require('../../db/crearYSubirArchivo');
 const pdfContainer = require('../../contenedor/pdfContenedor.js');
 const incrementString = require('./incrementString')
+const path = require('path');
 
 let pdfController = {
-    traerDatos: async function (req, res) {
-        let db = await googleSheet.accederGoogleSheet();
+    traerDatos: async function (req, res,next) {
+        let db = await accederGoogleSheet.database();
+        setTimeout(() => next, 3000);
         res.render('pdf', { db })
+    },
+
+    actualizarInvoice: async function (req, res) {
+        await accederGoogleSheet.actulizarCeldaInvoice(req.body.invoice)
+        console.log(req.body)
+        res.redirect('/pdf')
     },
 
     generadorMasivoPdfs: async function (req, res) {
@@ -50,7 +58,7 @@ let pdfController = {
             }
 
             //Renderizo el html con ejs para que se pueda usar el codigo de barras
-            ejs.renderFile('./views/plantilla-pdf.ejs', { db: data, voidsEnCodigoSvg, nombreArchivo },(err, result) => {
+            ejs.renderFile('./views/plantilla-pdf.ejs', { db: data, voidsEnCodigoSvg, nombreArchivo }, (err, result) => {
                 if (result) {
                     html = result;
                 } else {
@@ -77,23 +85,23 @@ let pdfController = {
     },
 
     generdorPdf: async function (req, res) {
-        let db = await googleSheet.accederGoogleSheet();
-        const id = db.findIndex((data) =>  data.rowNumber == req.params.id)
+        let db = await accederGoogleSheet.database();
+        const id = db.findIndex((data) => data.rowNumber == req.params.id)
         const data = db[id]
-        let nombreArchivo = data.Codigo + data.Id
+        let nombreArchivo = (data.Codigo + data.Id)
         const voidsCaja = pdfContainer.crearCodigoBarras(data.SOCartonInicial, 1, "CODE128")
         const voidsIndividuales = pdfContainer.crearCodigoBarras(data.VoidDesde, 1.8, "CODE128")
         const voidsEan = pdfContainer.crearCodigoBarras(data.Ean, 1.6, "EAN13")
 
-        const voidElement = {voidsCaja, voidsIndividuales, voidsEan}
+        const voidElement = { voidsCaja, voidsIndividuales, voidsEan }
         const html = await pdfContainer.renderizacionPlantilla(data, voidElement, nombreArchivo)
-        const urlArchivo = pdfContainer.crearPDF(html, nombreArchivo)
-        res.setHeader("Content-Type", "text/plain")
-        res.download(`./public/pdf/${nombreArchivo}.pdf`, (err) => {
-            if (err) return console.log(err);
-            res.redirect('/pdf')
-        })
-        // res.render('plantilla-pdf-unico', { db: data, voidsEnCodigoSvg: voidElement, nombreArchivo: nombreArchivo })
+        pdfContainer.crearPDF(html, nombreArchivo)
+//        res.setHeader("Content-Type", "text/plain")
+//         res.download(`./public/pdf/${nombreArchivo}.pdf`, (err) => {
+//             if (err) return console.log(err);
+//             res.redirect('/pdf')
+//         })
+    setTimeout(() => res.sendFile(path.resolve(`public/pdf/${nombreArchivo}.pdf`), 3000));
     }
 
 }

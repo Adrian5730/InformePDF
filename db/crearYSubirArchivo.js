@@ -65,6 +65,4 @@ let crearYSubirArchivo = async (nombreArchivo, nombreCarpeta) => {
     }
 }
 
-module.exports = {
-    crearYSubirArchivo
-};
+module.exports = crearYSubirArchivo;
