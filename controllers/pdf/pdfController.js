@@ -9,7 +9,7 @@ const incrementString = require('./incrementString')
 const path = require('path');
 
 let pdfController = {
-    traerDatos: async function (req, res,next) {
+    traerDatos: async function (req, res, next) {
         let db = await accederGoogleSheet.database();
         setTimeout(() => next, 3000);
         res.render('pdf', { db })
@@ -96,12 +96,15 @@ let pdfController = {
         const voidElement = { voidsCaja, voidsIndividuales, voidsEan }
         const html = await pdfContainer.renderizacionPlantilla(data, voidElement, nombreArchivo)
         pdfContainer.crearPDF(html, nombreArchivo)
-//        res.setHeader("Content-Type", "text/plain")
-//         res.download(`./public/pdf/${nombreArchivo}.pdf`, (err) => {
-//             if (err) return console.log(err);
-//             res.redirect('/pdf')
-//         })
-    setTimeout(() => res.sendFile(path.resolve(`public/pdf/${nombreArchivo}.pdf`), 3000));
+
+
+        res.setHeader("Content-Type", "application/pdf")
+        res.download(`./public/pdf/${nombreArchivo}.pdf`, (err) => {
+            if(err){
+                console.log(err);
+            }
+        });
+
     }
 
 }

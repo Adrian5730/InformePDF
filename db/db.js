@@ -17,7 +17,6 @@ let accederGoogleSheet = {
         const celdaXactualizar = await sheet.getCellByA1('A2');
         celdaXactualizar.value = dato;
         await sheet.saveUpdatedCells();
-        console.log(celdaXactualizar.value);
     }
 }
 
