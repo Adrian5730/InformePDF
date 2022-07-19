@@ -23,9 +23,9 @@ const pdfContainer = {
         return svgText;
     },
 
-    async renderizacionPlantilla(data, voidsEnCodigoSvg, nombreArchivo) {
+    async renderizacionPlantilla(data, voidsEnCodigoSvg, nombreArchivo, full ) {
         let html;
-        await ejs.renderFile('./views/plantilla-pdf-unico.ejs', { db: data, voidsEnCodigoSvg: voidsEnCodigoSvg, nombreArchivo: nombreArchivo }, (err, result) => {
+        await ejs.renderFile('./views/plantilla-pdf-unico.ejs', { db: data, voidsEnCodigoSvg: voidsEnCodigoSvg, nombreArchivo: nombreArchivo, full}, (err, result) => {
             if (result) {
                 html = result
             } else {

@@ -7,17 +7,18 @@ const crearYSubirArchivo = require('../../db/crearYSubirArchivo');
 const pdfContainer = require('../../contenedor/pdfContenedor.js');
 const incrementString = require('./incrementString')
 const path = require('path');
+const hojaNumOrden = 4;
+
+
 
 let pdfController = {
-    traerDatos: async function (req, res, next) {
-        let db = await accederGoogleSheet.database();
-        setTimeout(() => next, 3000);
+    traerDatos: async function (req, res) {
+        let db = await accederGoogleSheet.database(hojaNumOrden);
         res.render('pdf', { db })
     },
 
     actualizarInvoice: async function (req, res) {
-        await accederGoogleSheet.actulizarCeldaInvoice(req.body.invoice)
-        console.log(req.body)
+        await accederGoogleSheet.actulizarCeldaInvoice(hojaNumOrden, req.body.invoice)
         res.redirect('/pdf')
     },
 
@@ -85,27 +86,43 @@ let pdfController = {
     },
 
     generdorPdf: async function (req, res) {
-        let db = await accederGoogleSheet.database();
+        let db = await accederGoogleSheet.database(hojaNumOrden);
         const id = db.findIndex((data) => data.rowNumber == req.params.id)
-        const data = db[id]
+        const data = db[id];
+        let full = {};
+        for( let i=1; i <= data.Contador; i++ ){
+            full["Num"+i]={
+                MLA: data['MLA'+i],
+                InventoryID: data['InventoryID'+i],
+                CUENTA: data['CUENTA'+i],
+                codigoBarras: pdfContainer.crearCodigoBarras(data['InventoryID'+i], 1, "CODE128")
+            }
+        }
+        if(!full.Num1){ full = undefined; }
         let nombreArchivo = (data.Codigo + data.Id)
         const voidsCaja = pdfContainer.crearCodigoBarras(data.SOCartonInicial, 1, "CODE128")
         const voidsIndividuales = pdfContainer.crearCodigoBarras(data.VoidDesde, 1.8, "CODE128")
         const voidsEan = pdfContainer.crearCodigoBarras(data.Ean, 1.6, "EAN13")
-
-        const voidElement = { voidsCaja, voidsIndividuales, voidsEan }
-        const html = await pdfContainer.renderizacionPlantilla(data, voidElement, nombreArchivo)
-        pdfContainer.crearPDF(html, nombreArchivo)
+        const voidsCajaFinal = pdfContainer.crearCodigoBarras(data.SOCartonFinal, 1, "CODE128")
+        const voidsIndividualesFinal = pdfContainer.crearCodigoBarras(data.VoidHasta, 1.8, "CODE128")
+        const voidElement = { voidsCaja, voidsIndividuales, voidsEan, voidsCajaFinal, voidsIndividualesFinal }
+        const html = await pdfContainer.renderizacionPlantilla(data, voidElement, nombreArchivo, full)
+        await pdfContainer.crearPDF(html, nombreArchivo)
         let nombreCarpeta = data.Id
-        crearYSubirArchivo(nombreArchivo, nombreCarpeta)
-        res.setHeader("Content-Type", "application/pdf")
-        res.download(`./public/pdf/${nombreArchivo}.pdf`, (err) => {
-            if(err){
-                console.log(err);
-            }
-        });
+        // setTimeout(() => {
+        //     crearYSubirArchivo(nombreArchivo, nombreCarpeta);
+        // }, 3000)
+        res.render('plantilla-pdf-unico', { db: data, voidsEnCodigoSvg: voidElement, nombreArchivo, full})
+        // res.setHeader("Content-Type", "application/pdf")
+        // res.download(`./public/pdf/${nombreArchivo}.pdf`, (err) => {
+        //     if(err){
+        //         console.log(err);
+        //     }
+        // });
 
-    }
+    },
+    
+     //Prueba 
 
 }
 

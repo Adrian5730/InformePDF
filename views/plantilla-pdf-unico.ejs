@@ -43,8 +43,11 @@
                     <p>C/NO:
                         <%= db.CNOInicial %>
                     </p>
-                    <%- voidsEnCodigoSvg.voidsCaja %>
-
+                    <% if(db.UnidadesCarton == 1 ) {%>
+                        <%- voidsEnCodigoSvg.voidsIndividuales %>
+                    <% } else { %>
+                        <%- voidsEnCodigoSvg.voidsCaja %>
+                    <% } %>
                         <p class="codigo">
                             Codigo: <%= db.Codigo %>
                         </p>
@@ -97,13 +100,18 @@
                     <p>C/NO:
                         <%= db.CNOFinal%>
                     </p>
-                    <%- voidsEnCodigoSvg.voidsCaja%>
+                    <% if(db.UnidadesCarton == 1 ) {%>
+                        <%- voidsEnCodigoSvg.voidsIndividualesFinal %>
+                    <% } else { %>
+                        <%- voidsEnCodigoSvg.voidsCajaFinal %>
+                    <% } %>
                         <p class="codigo">
                             Codigo: <%= db.Codigo %>
                         </p>
                 </div>
             </div>
         </div>
+        <% if(db.UnidadesCarton != 1 ) {%>
         <div class="linea"></div>
         <h3 class="titulo estabilizado"><strong>VOID (Giftbox)</strong></h3>
         <h3 class="titulo"> For GIFT-BOX, stick 1 different bar-code for each in "VOID" space:</h3>
@@ -128,10 +136,11 @@
 
             <div class="infVoid">
                 <div class="bordado cajitaVoid ">
-                    <%- voidsEnCodigoSvg.voidsIndividuales %>
+                    <%- voidsEnCodigoSvg.voidsIndividualesFinal %>
                 </div>
             </div>
         </div>
+        <% } %>
         <div class="linea"></div>
         <h3 class="titulo estabilizado"><strong>EAN / Model Info</strong></h3>
         <div class="containerEan informacion">
@@ -182,182 +191,50 @@
                 </svg>
             </div>
         </div>
+        <% if(db.Contador != 0) { %>
         <div class="linea"></div>
-        <% if(db.Contador) { %>
-        <h3 class="titulo2"><strong>FULL (Giftbox)</strong></h3>
-        <h3 class="titulo2"> These labels must be on the gift box per product. If the measurements cannot be met, adjust
-            for packaging, but it must be functional.</h3>
-        <div class="container informacion">
-            <div class="infProducto">
-                <div class="bordado cajita ">
-                    <p>MELI SKU - BIDCOM
-                        <%= db.NumInvoice %>
-                    </p>
-                    <p>MARCA: -
-                        <%= db.Marca %>
-                    </p>
-                    <p>MODELO:
-                        <%= db.Modelo %>
-                    </p>
-                    <p>Cont:
-                        <%= db.Cont %>
-                    </p>
-                    <p>Origen:
-                        <%= db.Origen %>
-                    </p>
-                    <p>C/NO:
-                        <%= db.CNOInicial %>
-                    </p>
-                    <%- voidsEnCodigoSvg.voidsCaja %>
-                </div>
-            </div>
-            <div class="infProducto">
-                <span>Minimum recommended size 210x150mm</span>
-                <div class="bordado cajita ">
-                    <p>PI -
-                        <%= db.NumInvoice %>
-                    </p>
-                    <p>MARCA: -
-                        <%= db.Marca %>
-                    </p>
-                    <p>MODELO:
-                        <%= db.Modelo %>
-                    </p>
-                    <p>Cont:
-                        <%= db.Cont %>
-                    </p>
-                    <p>Origen:
-                        <%= db.Origen %>
-                    </p>
-                    <p>C/NO:
-                        <%= db.CNOInicial %>
-                    </p>
-                    <%- voidsEnCodigoSvg.voidsCaja %>
-                </div>
-            </div>
-            <div class="infProducto">
-                <span>Minimum recommended size 210x150mm</span>
-                <div class="bordado cajita ">
-                    <p>PI -
-                        <%= db.NumInvoice %>
-                    </p>
-                    <p>MARCA: -
-                        <%= db.Marca %>
-                    </p>
-                    <p>MODELO:
-                        <%= db.Modelo %>
-                    </p>
-                    <p>Cont:
-                        <%= db.Cont %>
-                    </p>
-                    <p>Origen:
-                        <%= db.Origen %>
-                    </p>
-                    <p>C/NO:
-                        <%= db.CNOInicial %>
-                    </p>
-                    <%- voidsEnCodigoSvg.voidsCaja %>
-                </div>
-            </div>
-            <div class="infProducto">
-                <span>Minimum recommended size 210x150mm</span>
-                <div class="bordado cajita ">
-                    <p>PI -
-                        <%= db.NumInvoice %>
-                    </p>
-                    <p>MARCA: -
-                        <%= db.Marca %>
-                    </p>
-                    <p>MODELO:
-                        <%= db.Modelo %>
-                    </p>
-                    <p>Cont:
-                        <%= db.Cont %>
-                    </p>
-                    <p>Origen:
-                        <%= db.Origen %>
-                    </p>
-                    <p>C/NO:
-                        <%= db.CNOInicial %>
-                    </p>
-                    <%- voidsEnCodigoSvg.voidsCaja %>
-                </div>
-            </div>
-            <div class="infProducto">
-                <span>Minimum recommended size 210x150mm</span>
-                <div class="bordado cajita ">
-                    <p>PI -
-                        <%= db.NumInvoice %>
-                    </p>
-                    <p>MARCA: -
-                        <%= db.Marca %>
-                    </p>
-                    <p>MODELO:
-                        <%= db.Modelo %>
-                    </p>
-                    <p>Cont:
-                        <%= db.Cont %>
-                    </p>
-                    <p>Origen:
-                        <%= db.Origen %>
-                    </p>
-                    <p>C/NO:
-                        <%= db.CNOInicial %>
-                    </p>
-                    <%- voidsEnCodigoSvg.voidsCaja %>
-                </div>
-            </div>
-            <div class="infProducto">
-                <span>Minimum recommended size 210x150mm</span>
-                <div class="bordado cajita ">
-                    <p>PI -
-                        <%= db.NumInvoice %>
-                    </p>
-                    <p>MARCA: -
-                        <%= db.Marca %>
-                    </p>
-                    <p>MODELO:
-                        <%= db.Modelo %>
-                    </p>
-                    <p>Cont:
-                        <%= db.Cont %>
-                    </p>
-                    <p>Origen:
-                        <%= db.Origen %>
-                    </p>
-                    <p>C/NO:
-                        <%= db.CNOInicial %>
-                    </p>
-                    <%- voidsEnCodigoSvg.voidsCaja %>
-                </div>
-            </div>
-            <div class="infProducto">
-                <span>Minimum recommended size 210x150mm</span>
-                <div class="bordado cajita ">
-                    <p>PI -
-                        <%= db.NumInvoice %>
-                    </p>
-                    <p>MARCA: -
-                        <%= db.Marca %>
-                    </p>
-                    <p>MODELO:
-                        <%= db.Modelo %>
-                    </p>
-                    <p>Cont:
-                        <%= db.Cont %>
-                    </p>
-                    <p>Origen:
-                        <%= db.Origen %>
-                    </p>
-                    <p>C/NO:
-                        <%= db.CNOInicial %>
-                    </p>
-                    <%- voidsEnCodigoSvg.voidsCaja %>
-                </div>
-            </div>
+            <h3 class="titulo2"><strong>FULL (Giftbox)</strong></h3>
+            <h3 class="titulo2"> These labels must be on the gift box per product. If the measurements cannot be met, adjust for packaging, but it must be functional.</h3>
+            <div class="containerFull prueba ">
+                <% for( let i=1; i <= db.Contador; i++ ){ %>
+                    <% if(i==1) { %>
+                        <svg id="Capa_1" class="fuente128Full" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 114.75 41.25">
+                            <g id="Capa_2">
+                                <g id="Capa_1-2">
+                                    <image width="153" height="55" transform="scale(.75)"
+                                        xlink:href="data:image/png;base64,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"
+                                        style="isolation:isolate;" />
+                                </g>
+                            </g>
+                        </svg>
+                        <svg id="Capa_1" class="medida7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 180 29.25"><image width="240" height="39" transform="scale(.75)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAAnCAIAAAC+DFJSAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGISURBVHhe7djRicMwEEXR1OWCVI+rSTMuJjureY5laxeEjQN53PM1EfKPuAiRxwswQtCwQtCwQtCwQtCXLHOZHtVUnloLu+VFi/gEgj5vmVWtTHO2+yxakDZ13GwLOk5eE4Zkt/UGXuqs27hdz+Qp+nMI+qy1W/182603Ref6VPQaqU+U9WmyvldG9qATp6OJoM+r8U2l6LWs6/kY+vYrp9aUX1b5XBnZg06cjSaCPu34gA41uMMrowu6dr+G+7vefjCyB504Gk0EfV4Gl7dmvqGzuBzX9rZfu/1toM0HI3vQiaPRRNDn7Rvbfu3Wmyr7WHNuPxjZg04cjSaCvmCN7HCdvsdYb5YJ+j5xNJoI+oqsbKP4uvXscCTWkT3oxNFoIuhr4u1cr+AIr6jmql3Xnx8EfZ84Gk0EDQMEDSsEDSv/Bg18KUXMDQ0DBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rBA0rfwcNfCmChi2ChhWChhWChpHX6wfL/Zq0ZYYE2wAAAABJRU5ErkJggg=="/></svg>
+                        <svg id="Capa_1" medida="medida8" class="medida8" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.25 171.75"><image width="63" height="229" transform="scale(.75)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAADlCAIAAABrmLjBAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJ6SURBVHhe7dw/ctpAGEBxKWcBF4xPIJ8A3KTiCFJJGncp06WBMnS07o1OYE7AuDDchexKa/64SBjD8GDm/RrvymJ4SJ/sjnyz2WQ361v6eZvOcO3zPE+rC2qzyckJH/vEd7/tybGeYz3Heo71HOs51nOs51jPsZ5jPcd6jvUc6znWc6znWM+xnmM9x3qO9RzrOdZzrOdYz7GeYz3Heo71HOs51nOs51jPsZ5jPcd6jvUc6znWc6znWM+xnmM9x3qO9RzrOdZzrOdYz7Gec1hfV3lQ1Wm7nlQP8UD+UNXrdOy6bHZW46I5VM5323K+ahfFeNUcPaPDd/+KvWtf//6xSMto/fK8yIpet5N1HodFtnh+ub7Lv61fT35Ns6Jor360eguf5f6uE5adu/ssW7yt4llxlKrJ3kjVaRnXzQuPOedc0j2Yl3E45s3sNJPTjlEaovjbZnbScMV5+lgXzWZefnrlv89phE1afVV77etqMC3Gs1G32f1X+b0fbklzR7Ji+BQ33V77q61jzjlZrG+Gpvw5ikOy1b7vvnaKrkqsj49nNh2Esew2z21Yfozn8j0+quv3ZbiAvSPvzAXF+tFrGqPdsP/pZ/2nsAmP6jr99Rk+Xt2l//Tf6kBnNBuXy0E33JHwgWaHg3Ud/I5GjvUc6znWc6znWM+xnmM9x3qO9RzrOdZzrOdYz7GeYz3Heo71HOs51nOs51jPsZ5jPcd6jvUc6znWc6znWM+xnmM9x3qO9RzrOdZzrOdYz7GeYz3Heo71HOs51nOs51jPsZ5jPcd6jvUc6znWc6znWM+xnmM957brz/Dtnnmep9UFtdnkd5Oe7pYnJ8v+AmGaqm0MsVS3AAAAAElFTkSuQmCC"/></svg>
+                    <%  } %>
+                    </div>
+                    <div class="containerVoids informacion infFull">
+                        <div class="infVoid">
+                            <div class="bordado cajitaVoid etiquetaFull ">
+                                <p>MELI SKU - 
+                                    <%= full["Num"+i].CUENTA %>
+                                </p>
+                                <p>
+                                    <%= full["Num"+i].MLA %>
+                                </p>
+                                <p>
+                                    <%= full["Num"+i].InventoryID %>
+                                </p>
+                                <div class="">
+                                    <%- full["Num"+i].codigoBarras %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="infVoid mitadFull"></div>
+                        
+                <%  } %>
+            <%  } %>
+            </div> 
         </div>
-        <%  } %>
-    </div>
     </div>
 </body>
 

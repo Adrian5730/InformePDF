@@ -5,26 +5,26 @@ let credenciales = require('./credentials.json');
 let accederGoogleSheet = {
 
 
-    database: async function () {
-        const sheet = await accederGoogle()
+    database: async function (id) {
+        const sheet = await accederGoogle(id)
         const registros = await sheet.getRows();
         return registros
     },
 
-    actulizarCeldaInvoice: async function (dato) {
-        const sheet = await accederGoogle()
+    actulizarCeldaInvoice: async function (id, dato) {
+        const sheet = await accederGoogle(id)
         await sheet.loadCells()
-        const celdaXactualizar = await sheet.getCellByA1('A2');
+        const celdaXactualizar = await sheet.getCellByA1('A2'); 
         celdaXactualizar.value = dato;
         await sheet.saveUpdatedCells();
-    }
+    },
 }
 
-let accederGoogle = async () => {
+let accederGoogle = async (id) => {
     const documento = new GoogleSpreadsheet(idDocumento)
     await documento.useServiceAccountAuth(credenciales)
     await documento.loadInfo();
-    const sheet = documento.sheetsByIndex[4];
+    const sheet = documento.sheetsByIndex[id];
     return sheet
 }
 
