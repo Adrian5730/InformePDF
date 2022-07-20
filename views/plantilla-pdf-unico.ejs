@@ -145,11 +145,6 @@
         <h3 class="titulo estabilizado"><strong>EAN / Model Info</strong></h3>
         <div class="containerEan informacion">
             <div class="infEan">
-                <svg id="Capa_1" class="medida4" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 210.75 14.25">
-                    <image width="281" height="19" transform="scale(.75)"
-                        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARkAAAATCAIAAAArnu6SAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF+SURBVGhD7dkxjoJQFIVhnWVYgqswQKkuQTZAQc0SrIw9iZWVcQva6jKAULkN5sAlximmmMAIJv9XPK/3EQr15Pp0WlXVBEBnX+0jhrNer6eN+XxunTiOrXO/362D8SNLo6BvB5JlmWrLj57ebjff95t9fACyNDzHcdqqcTqdkiRR4XnearVStDSmdrudDa6iKGxknc9nXaPVtkRbukCFrm/uhLeqs6RX355gEGmaNllo46FIPNP1LMqy1KSKomi5XKrI8/x4PNrW4XCwIea67vV6Va3VtvAeliDm0vD06RfFIwxDBant/mSTarFYKE4qXkfZdrvVakPM+srbb/fB/yFLY6EYKAyPx0PFMwkqZrOZ1Rg5sjQWis3lctF4CYJgv9+ro5NSlmWvIwhjRpYGpgjZYUmnHZ151NlsNlrV8X2fk88Hqf+r1dumtW0A+KM2QaQI6K6eScwloCNLEOcloB9kCegHWQL6QZaAfpAloB9kCehHnSV+EAe6mky+AU+epx3pxhYlAAAAAElFTkSuQmCC" />
-                </svg>
                 <div class="bordado listaEan">
                     <ul>
                         <li>
@@ -176,9 +171,17 @@
 
                     </ul>
                     <p>
-                        <%- voidsEnCodigoSvg.voidsEan %>
+                        <% if(db.Artes == "TRUE") { %>
+                            <%- voidsEnCodigoSvg.voidsEan %>
+                        <% } %>
                     </p>
                 </div>
+                <% if(db.Artes == "TRUE") { %>
+                <svg id="Capa_1" class="medida4" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 210.75 14.25">
+                    <image width="281" height="19" transform="scale(.75)"
+                        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARkAAAATCAIAAAArnu6SAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF+SURBVGhD7dkxjoJQFIVhnWVYgqswQKkuQTZAQc0SrIw9iZWVcQva6jKAULkN5sAlximmmMAIJv9XPK/3EQr15Pp0WlXVBEBnX+0jhrNer6eN+XxunTiOrXO/362D8SNLo6BvB5JlmWrLj57ebjff95t9fACyNDzHcdqqcTqdkiRR4XnearVStDSmdrudDa6iKGxknc9nXaPVtkRbukCFrm/uhLeqs6RX355gEGmaNllo46FIPNP1LMqy1KSKomi5XKrI8/x4PNrW4XCwIea67vV6Va3VtvAeliDm0vD06RfFIwxDBant/mSTarFYKE4qXkfZdrvVakPM+srbb/fB/yFLY6EYKAyPx0PFMwkqZrOZ1Rg5sjQWis3lctF4CYJgv9+ro5NSlmWvIwhjRpYGpgjZYUmnHZ151NlsNlrV8X2fk88Hqf+r1dumtW0A+KM2QaQI6K6eScwloCNLEOcloB9kCegHWQL6QZaAfpAloB9kCehHnSV+EAe6mky+AU+epx3pxhYlAAAAAElFTkSuQmCC" />
+                </svg>
                 <svg id="Capa_1" class="medida5" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 41.25 168">
                     <image width="55" height="224" transform="scale(.75)"
@@ -189,6 +192,10 @@
                     <image width="159" height="57" transform="scale(.75)"
                         xlink:href="data:image/png;base64,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" />
                 </svg>
+                <% } else { %>
+                    <svg id="Capa_1" class="medidaEan1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 39.75 153.75"><image width="53" height="205" transform="scale(.75)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADUAAADNCAIAAACXRa9TAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGwSURBVHhe7dTRbYMwGADhzMVAzMM0LMMwrv3bKVZTNSYXRCrdPTmOYz4ZyC19dv/EdwPVHU7q+e5nC/5OH0sfSx9LH0sfSx9LH0sfSx9LH0sfSx9LH0sfSx9LH0sfSx9LH0sfSx9LH0sfSx9LH0sfSx9LH0sfSx9LH0sfSx9LH0sfSx9LH0sfSx9LH0sfSx9LH0sfSx9LH+uAb1vmKX/ITfO61blutp98X8O+bSmMeU1pnYtmCUzMFlgM2uQ7O3B+93ZprzoJeNy3xfkFrx5lHe7j5l+6G792T0YsHlkTHfXVm9sete4ku9teZ/N0XtPG9QdVEMtH1kTHz+9B8rvv52yu+2JkTfSKb98wBv1VyvhDfGWPbufYOIaX+OpbUa//zWvblQcnBp30ybVH1kTj57ety1R+m7u/H6XH/+eLfNekj6WPpY+lj6WPpY+lj6WPpY+lj6WPpY+lj6WPpY+lj6WPpY+lj6WPpY+lj6WPpY+lj6WPpY+lj6WPpY+lj6WPpY+lj6WPpY+lj6WPpY+lj6WPpY+lj6WPpY+lj6WP1a6dES9XdzipK89mJH2klL4Apmh831Uzm24AAAAASUVORK5CYII="/></svg>
+                    <svg id="Capa_1" class="medidaEan2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 158.25 23.25"><image width="211" height="31" transform="scale(.75)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANMAAAAfCAIAAADyT29BAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGqSURBVHhe7do/coJAFMfxJWeBFBlPgCdAGyvbdFDqUbDULq2VjXCCeAIr4S7kyS5/knFGJ4O+gu+nkMfONu78fOuKXlVVBni5N3cFXovkQQfJgw6SBx1d8jzPcxXwfPS8TpknU/n8iWmyKd2gyRM7Vpt243iYLJyr+qpGvx6jIotlCeJMqjR0lWhH8W83o0XPa/jRVtZjG7nb8CO4XsrLua0bdRecJontkNIf801b1i3x7gQIG0DRr0es7nEmTIv+rRXGWT3am2Lbo/REqbvueHfCyMjbdlUPPe+Pa+fL4tM6SHK5Ky/yYmNYpGY3+2x7Vric+9Io3ydSx4tI6uBDQna+PDxh5EjeDdFCutPuINHzVxLE75XExvjzZWhO+yPBGQbJgw6S17DHgutuWuaHXb1DSrmRk4H9KaU87k9uC8UASF4j2hZpbNaB5wWzs5wI6lOuv/pyg16wn6SF3XgxgO5fUrK4bQ0M6Ga0fiXPFsDg7iSPnodnuBktvudBB8mDDpIHHSQPOkgedJA86CB50EHyoIPkQQfJg44ueTw6wyvxrBY62G2hwZgf9C0hcKtMZ0gAAAAASUVORK5CYII="/></svg>
+                <% } %>
             </div>
         </div>
         <% if(db.Contador != 0) { %>
@@ -220,9 +227,6 @@
                                 </p>
                                 <p>
                                     <%= full["Num"+i].MLA %>
-                                </p>
-                                <p>
-                                    <%= full["Num"+i].InventoryID %>
                                 </p>
                                 <div class="">
                                     <%- full["Num"+i].codigoBarras %>

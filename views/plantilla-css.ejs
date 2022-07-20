@@ -46,6 +46,7 @@ p{
 
 div div.infFull{
     margin: 10px 45px;
+    margin-bottom: 40px;
 }
 
 .cajita{
@@ -206,3 +207,138 @@ div.listaEan ul li{
 }
 
 </style>
+
+<% if( db.UnidadesCarton == 1){  %>
+    <style type="text/css">
+    
+    svg.medida4{
+        top: 245px;
+    }
+
+    svg.medida5{
+        top: 360px;
+    }
+
+    svg.medida6{
+        top: 412px;
+    }
+
+    div.listaEan{
+        margin-bottom: 15px;
+    }
+
+    svg.medida7{
+        top: 695px;
+    }
+
+    svg.medida8{
+        top: 600px;
+    }
+
+    svg.fuente128Full{
+        top: 620px
+    }
+
+    </style>
+
+<% } %>
+
+<% if(db.Contador == 0) { %>
+    <style type="text/css">
+        div.containerEan{
+            margin-bottom: 30px;
+        }
+    </style>
+<% } %>
+
+<% if(db.Artes == "FALSE") { %>
+    <style type="text/css">
+
+        div.containerEan div.infEan{
+            width: 100%
+        }
+
+        div.containerEan div.infEan li{
+            padding: 5px;
+            margin: 0 30px
+        }
+
+
+        svg.medida7{
+            top: 615px;
+        }
+
+        svg.medida8{
+            top: 522px;
+        }
+
+        svg.fuente128Full{
+            top: 535px
+        }
+
+        svg.medidaEan1{
+            position:absolute;
+            top: 322px;
+            left: 510px;
+            width: 35px;
+        }
+
+        svg.medidaEan2{
+            position:absolute;
+            top: 238px;
+            left: 309px;
+            width: 200px;
+        }
+        
+    </style>
+<% } %>
+
+<% if(db.Artes == "FALSE" && db.UnidadesCarton != 1) { %>
+    <style type="text/css">
+
+        div.containerEan div.infEan{
+            width: 100%
+        }
+
+        div.containerEan{
+            margin-left: 290px;
+        }
+
+        div.containerEan div.infEan li{
+            padding: 5px;
+            margin: 0 30px
+        }
+
+
+        svg.medida7{
+            top: 780px;
+        }
+
+        svg.medida8{
+            top: 695px;
+            width: 36px;
+        }
+
+        svg.fuente128Full{
+            top: 715px;
+        }
+
+        svg.medidaEan1{
+            position:absolute;
+            top: 503px;
+            left: 513px;
+            width: 35px;
+        }
+
+        svg.medidaEan2{
+            position:absolute;
+            top: 418px;
+            left: 298px;
+            width: 220px;
+        }
+    </style>
+<% } %>
+
+
+
+

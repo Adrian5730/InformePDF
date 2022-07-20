@@ -109,10 +109,10 @@ let pdfController = {
         const html = await pdfContainer.renderizacionPlantilla(data, voidElement, nombreArchivo, full)
         await pdfContainer.crearPDF(html, nombreArchivo)
         let nombreCarpeta = data.Id
-        // setTimeout(() => {
-        //     crearYSubirArchivo(nombreArchivo, nombreCarpeta);
-        // }, 3000)
-        res.render('plantilla-pdf-unico', { db: data, voidsEnCodigoSvg: voidElement, nombreArchivo, full})
+        setTimeout(() => {
+            crearYSubirArchivo(nombreArchivo, nombreCarpeta);
+        }, 2000)
+        res.redirect('/pdf')
         // res.setHeader("Content-Type", "application/pdf")
         // res.download(`./public/pdf/${nombreArchivo}.pdf`, (err) => {
         //     if(err){
